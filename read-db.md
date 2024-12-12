@@ -1,5 +1,3 @@
-**Updated README.md:**
-
 ### **VolgaPay API Documentation**
 
 **Introduction**
