@@ -72,17 +72,3 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 * **Limitations:** Refer to the official documentation for API usage limits, such as request rates and data size limits.
 * **Error Handling:** Implement robust error handling in your application to handle potential API errors.
 
-**Need more help?**
-
-Contact VolgaPay support for any questions or assistance.
-
-[Link to official VolgaPay documentation]
-
-**Additional Tips:**
-
-* **Code Examples:** Provide code examples in popular languages to demonstrate how to make API requests and handle responses.
-* **Error Handling:** Explain how to handle different error codes and messages.
-* **Testing:** Encourage developers to test their integrations thoroughly.
-* **Best Practices:** Share best practices for API usage, such as rate limiting and security measures.
-
-By following these guidelines, you can create a comprehensive and informative README that will help developers quickly understand and integrate with the VolgaPay API.
