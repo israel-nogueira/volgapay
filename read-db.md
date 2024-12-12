@@ -168,9 +168,19 @@ Esta documentação descreve os endpoints e funcionalidades da API de pagamento 
 ```json
 {
     "status": "3d_redirect",
-    "message": "3DS link generated successfully.",
-    "redirect_url": "https://dashboard.charge.money/payment/test-transaction/IMXH1733970358"
+    "message": "3DS link generated successfully, please redirect to 'redirect_3ds_url'.",
+    "redirect_url": "https://dashboard.charge.money/payment/test-transaction/IMXH1733970158",
+    "customer_order_id": "ORDER-5001",
+    "customer_id": "2525",
+    "transaction_hash": "TRANSACTION_HASH",
+    "card_nr": "400000XXXXXX3184",
+    "card_hash": "CARD_HASH",
+    "amount": "15.00",
+    "currency": "USD",
+    "brand": "Visa",
+    "token_validation": "TOKEN_VALIDATION_HASH"
 }
+
 ```
 
 ### Pagamento com Pix
