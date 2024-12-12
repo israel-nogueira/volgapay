@@ -36,7 +36,7 @@ https://api.volgapay.com/auth/login
 {
   "status": "success",
   "message": "Login successful",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzMzOTY2NTcxLCJleHAiOjE3MzY1NTg1NzF9.Q_pp6hipX-5l2n4w2XHaEwQ72KyjRx6TliYIAWWVtvY",
+  "token": "eyJhbGciOiJIUzI1NiIsInRCJ9.eyJpZCI6MiwiaWF0IjoxNzMzOTY2NTcxLCJleHAiOjE3MzY1NTg1NzF9.Q_pp6hipX-5l2n4w2XHaEwQ72KyjRx6TliYIAWWVtvY",
   "token_type": "Bearer",
   "expires_at": "2025-01-11T01:22:51.000Z"
 }
