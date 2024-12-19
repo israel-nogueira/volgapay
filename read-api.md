@@ -650,8 +650,75 @@ print_r($response);
 ?>
 ```
 
+---
 
-Aqui está a documentação adaptada para o novo endpoint de pagamento com Pix, seguindo o formato do modelo fornecido:
+## Webhook de Retorno
+
+O **webhook** será enviado ao endpoint configurado pelo cliente, conforme o status da transação.
+
+### Exemplo de Webhook - Status: `pending`
+
+```json
+{
+   "status": "pending",
+   "message": "Payment pending approval.",
+   "transaction_hash": "41ec3ba37e7b3f4d8b0c458e6d5360aa626522c5ca632ed2c819de0943d36f06",
+   "customer_id": "2525",
+   "customer_order_id": "009",
+   "amount": "22.00",
+   "currency": "BRL",
+   "card_hash": "9a7a9956c7a427ff502e373a8a5217d66f432f59826e7492ad88a71f19dbbe9c",
+   "token_validation": "YjViZjcxYjliMGZjYTE0NjlkNjVhZTI2MTE0NjhmNTg4NTk3NDg5ZTQyNTFhOTQ5NGZiNzNmZTIxMzI4Yzg4MDphNTIxZDVjMGJlMDEwZGI2MDllYzRkNTYwMTVhZDM4NDViZTZjZjE1ZDQyNjZkMjkzOTkyZTMzZDMwN2JkMzk3"
+}
+```
+
+### Exemplo de Webhook - Status: `success`
+
+```json
+{
+   "status": "success",
+   "message": "Your transaction has been processed successfully.",
+   "amount": "20.00",
+   "currency": "USD",
+   "email": "juca@bala.com",
+   "transaction_hash": "bcfe4b5802019fd08b20bf8491bf33fed49dc231b05fe4e4977f87c2af61219c",
+   "card_no": "424242XXXXXX4242",
+   "card_hash": "9a7a9956c7a427ff502e373a8a5217d66f432f59826e7492ad88a71f19dbbe9c",
+   "customer_order_id": "008",
+   "customer_id": "2525",
+   "token_validation": "ZDFjNzg0YjAtYTc4NC0xMWVmLWFmZGEtZjQzOTA5NDU0YzA5OjljMDFkMDgwNzU5MjRjOWJlZTZmMzgyZGNmNTU0MDcwNjE0YWZkZGUyYTEwN2FlNTJhZDhhZjljNzQ0MjQwMTk="
+}
+```
+
+---
+
+### Explicação do campo `token_validation`
+
+O campo **`token_validation`** é uma string codificada em **Base64** que contém os dados **`client_id`** e **`client_secret`** concatenados. Esta codificação é utilizada para garantir que as credenciais da API sejam enviadas de forma segura. O formato do `token_validation` é:
+
+```
+Base64(client_id:client_secret)
+```
+
+#### Exemplo:
+
+- **`client_id`**: `your_client_id`
+- **`client_secret`**: `your_client_secret`
+
+A codificação em Base64 de **`your_client_id:your_client_secret`** seria:
+
+```
+eW91cl9jbGllZW50X2lkOnlvdXJfY2xpZW50X3NlY3JldA==
+```
+
+Portanto, a string **`token_validation`** para esses dados seria:
+
+```json
+"token_validation": "eW91cl9jbGllZW50X2lkOnlvdXJfY2xpZW50X3NlY3JldA=="
+```
+
+
+Aqui está a documentação para o endpoint de pagamento com Pix:
 
 ---
 
