@@ -738,7 +738,6 @@ Portanto, a string **`token_validation`** para esses dados seria:
 ```
 
 
-Aqui está a documentação para o endpoint de pagamento com Pix:
 
 ---
 
