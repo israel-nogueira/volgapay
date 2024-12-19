@@ -690,11 +690,31 @@ O **webhook** será enviado ao endpoint configurado pelo cliente, conforme o sta
 }
 ```
 
+
+## Campos de Retorno do Webhook
+
+Abaixo está a tabela com os campos retornados nos webhooks e suas descrições:
+
+| **Campo**             | **Descrição**                                                                                           |
+|-----------------------|---------------------------------------------------------------------------------------------------------|
+| `status`              | O status da transação (ex: `pending`, `success`).                                                      |
+| `message`             | Mensagem descrevendo o estado da transação (ex: "Payment pending approval", "Transaction processed successfully"). |
+| `transaction_hash`    | Identificador único da transação.                                                                       |
+| `customer_id`         | Identificador do cliente.                                                                               |
+| `customer_order_id`   | Identificador do pedido do cliente.                                                                     |
+| `amount`              | Valor da transação.                                                                                     |
+| `currency`            | Moeda da transação (ex: `BRL`, `USD`).                                                                  |
+| `card_hash`           | Hash do cartão de crédito utilizado.                                                                   |
+| `token_validation`    | String codificada em Base64 contendo o `client_id` e `client_secret` concatenados.                     |
+| `email`               | E-mail do cliente associado à transação (apenas em transações com status `success`).                    |
+| `card_no`             | Número do cartão de crédito parcialmente mascarado (ex: `424242XXXXXX4242`).                           |
+
 ---
 
-### Explicação do campo `token_validation`
 
-O campo **`token_validation`** é uma string codificada em **Base64** que contém os dados **`client_id`** e **`client_secret`** concatenados. Esta codificação é utilizada para garantir que as credenciais da API sejam enviadas de forma segura. O formato do `token_validation` é:
+### Campo `token_validation`
+
+O campo **`token_validation`** é uma string codificada em **Base64** que contém os dados **`client_id`** e **`client_secret`** concatenados. Esta codificação é utilizada para garantir que as credenciais da API sejam recebidas de forma segura. O formato do `token_validation` é:
 
 ```
 Base64(client_id:client_secret)
