@@ -858,3 +858,137 @@ $response = json_decode($result, true);
 print_r($response);
 ?>
 ```
+
+---
+
+# Obter Detalhes da Transação
+
+## Descrição
+Este endpoint permite obter os detalhes de uma transação específica, dado o seu identificador (`transaction_hash`).
+
+- **Método**: POST  
+- **Endpoint**: `https://api.volgapay.com/payment/transaction-details`  
+- **Autenticação**: Bearer YOUR_ACCESS_TOKEN (TOKEN JWT recebido no login)
+
+---
+
+## Requisição
+
+```json
+{
+    "transaction_hash": "41ec3ba37e7b3f4d8b0c458e6d5360aa626522c5ca632ed2c819de0943d36f06"
+}
+```
+
+---
+
+## Tabela de Campos Requeridos
+
+| Campo              | Tipo   | Descrição                                            | Obrigatório |
+|--------------------|--------|------------------------------------------------------|-------------|
+| `transaction_hash` | string | Identificador único da transação.                    | Sim         |
+
+---
+
+## Resposta de Sucesso
+
+```json
+{
+    "status": "success",
+    "message": "Your transaction has been processed successfully.",
+    "customer_order_id": "009",
+    "customer_id": "2525",
+    "transaction_hash": "41ec3ba37e7b3f4d8b0c458e6d5360aa626522c5ca632ed2c819de0943d36f06",
+    "transaction_date": "2024-12-18T13:05:30.000Z",
+    "ip_address": "200.140.255.102",
+    "amount": "22.00",
+    "currency": "BRL",
+    "card_hash": "9a7a9956c7a427ff502e373a8a5217d66f432f59826e7492ad88a71f19dbbe9c",
+    "card_xx": "424242XXXXXX4242",
+    "redirect_url": null
+}
+```
+
+---
+
+## 🚀 Exemplo de Uso
+
+**Python:**
+```python
+import requests
+
+url = "https://api.volgapay.com/payment/transaction-details"
+headers = {
+    "Authorization": "Bearer YOUR_ACCESS_TOKEN"
+}
+transaction_data = {
+    "transaction_hash": "41ec3ba37e7b3f4d8b0c458e6d5360aa626522c5ca632ed2c819de0943d36f06"
+}
+response = requests.post(url, headers=headers, json=transaction_data)
+print(response.json())
+```
+
+**Node.js:**
+```javascript
+const axios = require('axios');
+
+const url = "https://api.volgapay.com/payment/transaction-details";
+const headers = {
+    Authorization: "Bearer YOUR_ACCESS_TOKEN"
+};
+const transactionData = {
+    transaction_hash: "41ec3ba37e7b3f4d8b0c458e6d5360aa626522c5ca632ed2c819de0943d36f06"
+};
+
+axios.post(url, transactionData, { headers }).then(response => {
+    console.log(response.data);
+}).catch(error => {
+    console.error(error);
+});
+```
+
+**PHP:**
+```php
+<?php
+
+$url = "https://api.volgapay.com/payment/transaction-details";
+$transactionData = array(
+    "transaction_hash" => "41ec3ba37e7b3f4d8b0c458e6d5360aa626522c5ca632ed2c819de0943d36f06"
+);
+
+$options = array(
+    "http" => array(
+        "header"  => "Content-type: application/json\r\nAuthorization: Bearer YOUR_ACCESS_TOKEN\r\n",
+        "method"  => "POST",
+        "content" => json_encode($transactionData),
+    ),
+);
+
+$context  = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+$response = json_decode($result, true);
+
+print_r($response);
+?>
+```
+
+---
+
+## Explicação dos Campos de Resposta
+
+| Campo              | Descrição                                                |
+|--------------------|----------------------------------------------------------|
+| `status`           | O status da transação (ex: `success`).                   |
+| `message`          | Mensagem informando o resultado da requisição.           |
+| `customer_order_id`| Identificador do pedido do cliente.                      |
+| `customer_id`      | Identificador do cliente associado à transação.          |
+| `transaction_hash` | Identificador único da transação.                        |
+| `transaction_date` | Data e hora em que a transação foi realizada (ISO 8601). |
+| `ip_address`       | O endereço IP do cliente que realizou a transação.       |
+| `amount`           | O valor da transação.                                    |
+| `currency`         | A moeda da transação (ex: `BRL`, `USD`).                |
+| `card_hash`        | O hash do cartão de crédito utilizado.                   |
+| `card_xx`          | O número do cartão de crédito, parcialmente mascarado (ex: `424242XXXXXX4242`). |
+| `redirect_url`     | Caso haja algum redirecionamento, o URL para o qual o cliente será enviado. |
+
+---
